@@ -1,0 +1,51 @@
+# esto dice al navegador que es html 
+<!DOCTYPE html>
+
+# esto es lenguaje (como en faker)
+<html lang="es">
+
+# esto da el formato para que admita ñ 
+# acentos y simbolos
+<head>
+    <meta charset="UT0F-8">
+    # esto es lo que sale en la pestaña chikita de navgador
+    <title>Mini formulario</title>
+</head>
+
+# lo que la gente ve o interactua
+<body>
+
+    <header>
+        <h1>Bienvenido</h1>
+        <p>Este es un ejemplo básico de HTML</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Formulario de registro</h2>
+
+            <form>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre"><br><br>
+
+                <label for="edad">Edad:</label><br>
+                <input type="number" id="edad" name="edad"><br><br>
+
+                <label for="rol">Rol:</label><br>
+                <select id="rol" name="rol">
+                    <option value="estudiante">Estudiante</option>
+                    <option value="profesor">Profesor</option>
+                    <option value="otro">Otro</option>
+                </select><br><br>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 - Proyecto de prueba</p>
+    </footer>
+
+</body>
+</html>
