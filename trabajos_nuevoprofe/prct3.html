@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar fuente de una imagen</title>
+        <style>
+            #descripcion{
+                font-family: Arial;
+                font-size: 20px;
+                margin-top: 10px;
+            }
+        </style>
+</head>
+<body>
+   <h2>Imagen con texto</h2>
+    <img src="image1.jpeg"; alt="Imagen de ejemplo"; id="imagen">
+    <p id="descripcion">Este es el texto de la imagen</p>
+    <button onclick="cambiarFuente()">Cambiar fuente</button>
+    <script>
+        function cambiarFuente(){
+            document.getElementById("descripcion").style.fontFamily="Courier New"
+            document.getElementById("imagen").src="imagen2.jpg";
+        }
+    </script> 
+</body>
+</html>
