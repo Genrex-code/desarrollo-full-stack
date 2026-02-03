@@ -34,6 +34,8 @@ let password = "0123"
 if (usuario === "admin" && password==="0123"){
     console.log("acesso permitido")
 }
-// ejercicio 3 
-let edad =20 ;
-let mensaje = edad >= 18 
+// ejercicio 3
+mensaje1 = "es menor de edad"
+mensaje2 = "es mayor de edad"
+// no alcanze a escribirlo 
+// nota escribir luego
