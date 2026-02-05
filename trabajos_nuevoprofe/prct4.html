@@ -1,0 +1,24 @@
+<!-- Formulario -->
+<!DOCTYPE html>
+<form lang="es">
+    <head>
+        <title>Formulario</title>
+    </head>
+    <body>
+        <form id= "formRegistro">
+        <input type "hidden" id = "ideditando" value =""/>
+        <div class= "row">
+            <label for = "nombre":></label>
+            <input id = "nombre" type = "text" placeholder="EJ:juan peres" required minlength="2"/>
+        </div>
+        <div class = "row">
+            <label for="correo">correo:</label>
+            <input id ="correo" type = "email" placeholder="ejemplo:correo@gmail.com" required />
+        </div>
+    </body>
+    <div class="actions">
+        <button type="submit" id ="btnguardar" class = "primary">Guardar(crear)</button>
+        <button type="button" id ="btnactualizar" class = "primary" disabled>Actualizar</button>
+        <button type="button" id ="btncancelar" class = "primary" disabled>Cancelar</button>
+    </div>
+</form>
