@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas- Act.2 </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <script src="app.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-tasks"></i> Gestor de Tareas</h1>
+            <p class="subtitle">Organizador de tareas y ya(?)</p>
+        </header>
+
+        <main class="app-main">
+            <section class="task-input-section">
+                <div class="input-group">
+                    <input type="text" id="taskInput" placeholder="Escribe una nueva tarea..." autocomplete="off">
+                    <button id="addTaskBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Tarea
+                    </button>
+                </div>
+                <div class="input-validation">
+                    <span id="validationMessage"></span>
+                </div>
+            </section>
+
+            <section class="task-filters">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pending">Pendientes</button>
+                    <button class="filter-btn" data-filter="completed">Completadas</button>
+                </div>
+                <div class="stats">
+                    <span id="taskStats">Total: 0 | Pendientes: 0 | Completadas: 0</span>
+                </div>
+            </section>
+
+            <section class="task-list-section">
+                <h2><i class="fas fa-list-check"></i> Lista de Tareas</h2>
+                <div class="empty-state" id="emptyState">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p>No hay tareas, pon algo!</p>
+                </div>
+                <ul id="taskList"></ul>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>Aplicación de Gestión de Tareas| :D.</p>
+        </footer>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-edit"></i> Editar Tarea</h3>
+            <input type="text" id="editTaskInput" placeholder="Editar tarea...">
+            <div class="modal-actions">
+                <button id="saveEditBtn" class="btn btn-primary">Guardar</button>
+                <button id="cancelEditBtn" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
