@@ -1,12 +1,36 @@
+// ===============================
+// server.js
+// Backend principal The Vault
+// ===============================
+
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 
 const app = express();
+const PORT = 3000;
 
+// ----------------------
+// MIDDLEWARE
+// ----------------------
 app.use(cors());
 app.use(express.json());
 
+// Servir imágenes físicas
+app.use("/images", express.static("images"));
+
+
+// ----------------------
+// TEST SERVER
+// ----------------------
+app.get("/api", (req, res) => {
+    res.json({ ok: true, mensaje: "Backend The Vault funcionando" });
+});
+
+
+// =======================
+// DISCOS
+// =======================
 app.get("/api/discos", (req, res) => {
     db.query("SELECT * FROM discos", (err, results) => {
         if (err) {
@@ -16,11 +40,13 @@ app.get("/api/discos", (req, res) => {
         res.json({ discos: results });
     });
 });
+
+
 // =======================
 // USUARIOS
 // =======================
 
-// Registrar usuario
+// Registrar
 app.post("/api/register", (req, res) => {
     const { username, password } = req.body;
 
@@ -37,8 +63,7 @@ app.post("/api/register", (req, res) => {
     );
 });
 
-
-// Login usuario
+// Login
 app.post("/api/login", (req, res) => {
     const { username, password } = req.body;
 
@@ -46,7 +71,9 @@ app.post("/api/login", (req, res) => {
         "SELECT * FROM usuarios WHERE username=? AND password=?",
         [username, password],
         (err, results) => {
-            if (err) return res.status(500).json({ error: "Error DB" });
+
+            if (err)
+                return res.status(500).json({ error: "Error DB" });
 
             if (results.length === 0)
                 return res.json({ ok: false });
@@ -63,7 +90,10 @@ app.post("/api/login", (req, res) => {
     );
 });
 
-app.listen(3000, () => {
-    console.log("Servidor backend en http://localhost:3000");
+
+// =======================
+// INICIAR SERVIDOR
+// =======================
+app.listen(PORT, () => {
+    console.log(`Servidor backend en http://localhost:${PORT}`);
 });
-app.use("/images", express.static("images"));
