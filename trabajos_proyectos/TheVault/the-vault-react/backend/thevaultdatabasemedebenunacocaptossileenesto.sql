@@ -1,5 +1,5 @@
-CREATE DATABASE vault;
-use vault;
+CREATE DATABASE thevault;
+use thevault;
 
 create table usuarios (
 id INT auto_increment primary key,
@@ -25,10 +25,4 @@ CREATE TABLE discos (
     anio INT,
     descripcion TEXT,
     top TINYINT DEFAULT 0
-);
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50),
-    password VARCHAR(255),
-    is_admin BOOLEAN DEFAULT FALSE
 );
