@@ -1,6 +1,7 @@
 // src/context/AppContext.js
 import React, { createContext, useState, useContext, useEffect } from 'react';
-
+import { discosService } from '../services/api';
+export const appProvider = ({children}) => { }
 const AppContext = createContext();
 
 // ========== INVENTARIO COMPLETO ==========
@@ -352,6 +353,22 @@ export const AppProvider = ({ children }) => {
       joined: '2024-02-15'
     }
   ];
+  useEffect(() => {
+    const loadInitialData = async () => {
+      try {
+        setLoading(true);
+        const data = await discosService.getAll();
+        // Seteamos los productos que vienen de tu base de datos
+        setProducts(data);
+      } catch (error) {
+        console.error("Error cargando datos de la API:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadInitialData();
+  }, []); // Se ejecuta una sola vez al cargar la app
 
   // Cargar estado inicial
   useEffect(() => {
@@ -777,3 +794,13 @@ export const AppProvider = ({ children }) => {
 };
 
 export const useApp = () => useContext(AppContext);
+return (
+    <AppContext.Provider value={{
+      adminProducts, // Ahora estos son los de la DB
+      loading,
+      // ... tus otras funciones
+    }}>
+      {children}
+    </AppContext.Provider>
+  );
+};

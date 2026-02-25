@@ -1,83 +1,49 @@
 // ===============================
-// server.js
-// Backend principal The Vault
+// server.js - Backend The Vault
 // ===============================
-
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
+const discosRoutes = require("./routes/discos");
+const usuariosRoutes = require("./routes/usuarios");
 
 const app = express();
 const PORT = 3000;
 
-// ----------------------
-// MIDDLEWARE
-// ----------------------
+// 1. MIDDLEWARES (Configuración básica)
 app.use(cors());
 app.use(express.json());
-
-// Servir imágenes físicas
 app.use("/images", express.static("images"));
 
+// 2. RUTAS DE LOS ARCHIVOS EXTERNOS
+app.use("/api/discos", discosRoutes);
+app.use("/api/usuarios", usuariosRoutes);
 
-// ----------------------
-// TEST SERVER
-// ----------------------
+// 3. RUTAS DIRECTAS (Login y Registro)
 app.get("/api", (req, res) => {
-    res.json({ ok: true, mensaje: "Backend The Vault funcionando" });
+    res.json({ ok: true, mensaje: "Backend funcionando" });
 });
 
-
-// =======================
-// DISCOS
-// =======================
-app.get("/api/discos", (req, res) => {
-    db.query("SELECT * FROM discos", (err, results) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: "Error DB" });
-        }
-        res.json({ discos: results });
-    });
-});
-
-
-// =======================
-// USUARIOS
-// =======================
-
-// Registrar
 app.post("/api/register", (req, res) => {
     const { username, password } = req.body;
-
     db.query(
-        "INSERT INTO usuarios (username,password) VALUES (?,?)",
+        "INSERT INTO usuarios (username, password) VALUES (?,?)",
         [username, password],
         (err) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: "Usuario ya existe o error DB" });
-            }
+            if (err) return res.status(500).json({ error: "Error al registrar" });
             res.json({ ok: true });
         }
     );
 });
 
-// Login
 app.post("/api/login", (req, res) => {
     const { username, password } = req.body;
-
     db.query(
         "SELECT * FROM usuarios WHERE username=? AND password=?",
         [username, password],
         (err, results) => {
-
-            if (err)
-                return res.status(500).json({ error: "Error DB" });
-
-            if (results.length === 0)
-                return res.json({ ok: false });
-
+            if (err) return res.status(500).json({ error: "Error DB" });
+            if (results.length === 0) return res.json({ ok: false });
             res.json({
                 ok: true,
                 user: {
@@ -90,10 +56,6 @@ app.post("/api/login", (req, res) => {
     );
 });
 
-
-// =======================
-// INICIAR SERVIDOR
-// =======================
 app.listen(PORT, () => {
-    console.log(`Servidor backend en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor listo en http://localhost:${PORT}`);
 });
