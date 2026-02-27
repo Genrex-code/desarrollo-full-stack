@@ -5,6 +5,8 @@ import { useApp } from 'trabajos_proyectos\trabajofinal\the-vault-react\the-vaul
 
 // declaracion de constantes
 //chingue asu amdre el america
+//siemplre si instala esto si jala 
+//npm install @paypal/react-paypal-js
 
 const PaypalCheckout = () => {
     const{CalculateCartTotal,cart,clearCart,currentUser} = useApp();
