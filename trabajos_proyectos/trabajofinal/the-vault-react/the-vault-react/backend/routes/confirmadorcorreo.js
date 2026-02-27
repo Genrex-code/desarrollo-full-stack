@@ -27,7 +27,8 @@ const ConfirmadorCorreo = ({ datosPedido }) => {
             total_price: `$${datosPedido.total.toFixed(2)}`,
             detalle_productos: datosPedido.productos.map(p => p.title).join(', ')
           };
-
+/////////
+//////aca cambias el registro y ya queda para enviar correos 
           await emailjs.send(
             'TU_SERVICE_ID',    // <--- Reemplazar
             'TU_TEMPLATE_ID',   // <--- Reemplazar
@@ -92,5 +93,7 @@ const ConfirmadorCorreo = ({ datosPedido }) => {
     </div>
   );
 };
+
+
 
 export default ConfirmadorCorreo;
